@@ -9,11 +9,7 @@ const Usuario = require('../models/usuario.js');
 
 app.get('/usuario', verificarToken, (req, res) => {
 
-  return res.json({
-    usuario: req.usuario,
-    nombre: req.usuario.nombre,
-    email: req.usuario.email
-  }); //end return
+
 
 
 

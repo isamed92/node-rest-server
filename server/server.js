@@ -3,6 +3,7 @@ require('./config/config.js');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
+const path = require('path');
 
 const app = express();
 
@@ -17,7 +18,8 @@ app.use(bodyParser.json())
 //configuracion global de rutas
 app.use(require('./routes/index.js'));
 
-
+//habilitar la carpeta public para ser accedida desde cualquier lugar
+app.use(express.static(path.resolve(__dirname,'../public')));
 
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true },(error, respuesta)=>{
   if (error) throw error;
