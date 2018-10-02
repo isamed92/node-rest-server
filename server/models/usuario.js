@@ -20,7 +20,7 @@ let usuarioSchema = new Schema({
     required: [true, 'El correo es necesario']
   },
   password:{
-    //hash de una sola vida: se encrypta el pass para que no pueda ser desenscriptador
+    //hash de una sola via: se encrypta el pass para que no pueda ser desenscriptador
 
     type: String,
     required: [true, 'La contraseña es obligatoria']
