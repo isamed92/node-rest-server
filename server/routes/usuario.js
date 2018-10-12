@@ -8,11 +8,6 @@ const Usuario = require('../models/usuario.js');
 
 
 app.get('/usuario', verificarToken, (req, res) => {
-
-
-
-
-
   let desde = req.query.desde || 0;
 
   desde = Number(desde);
@@ -26,7 +21,7 @@ app.get('/usuario', verificarToken, (req, res) => {
               .limit(limite)  //trae solo 5
               .exec((err, usuarios) => {
                 if (err) {
-                  return res.status(400),json({ok:false, err})
+                  return res.status(400).json({ok:false, err})
                 }
                 Usuario.count({estado:true}, (err, conteo ) =>{
                   res.json({ ok:true, usuarios, cuantos : conteo});
