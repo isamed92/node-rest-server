@@ -42,7 +42,31 @@ let verificaAdmin_Role = (req, res, next)=>{
 
 };
 
+/*=============================================>>>>>
+= verifica token para imagen =
+===============================================>>>>>*/
+let verificaTokenImg = (req, res, next)=>{
+  let token = req.query.token;
+  jsonwebtoken.verify(token, process.env.SEED, (err, decode)=>{
+    if (err) {
+      return res.status(401).json({ //error 401: no autorizado
+        ok:false,
+        err: {
+          message: 'Token incorrecto'
+        }
+      });
+    }
+    req.usuario = decode.usuario;
+    // console.log(req.usuario);
+    next();
+  })//end verify
+};
+
+
+
+
 module.exports = {
   verificarToken,
-  verificaAdmin_Role
+  verificaAdmin_Role,
+  verificaTokenImg
 }
